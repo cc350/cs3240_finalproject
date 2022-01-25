@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<title>Notehub Courses</title>
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<p></p>
+<style>
+        .container{
+        width:30%;
+        align-items: flex-start;
+    }
+	.save{
+    background-color:  #ffc49b;
+    color: black;
+    width:100%
+}
+</style>
+<div class="container">
+
+    <b>Really join  "<span style="color: #17a2b8;">{{ course.name }}</span>"?<br>
+    <p></p>
+    <a class="btn btn-sm btn-danger" style="width:100%" href="{% url 'course_list' %}" >No</a>
+    <p></p>
+    <form method="POST" action="{% url 'course_join' course.pk %}">
+        {% csrf_token %}
+        <input class="btn btn-sm save" type="submit" value="Yes, Join" name="Yes">
+    </form>
+</div>
+{% endblock %}

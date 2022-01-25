@@ -1,0 +1,60 @@
+@font-face {
+    font-family: "Gratise";
+    src: url("fonts/Gratise.ttf") format("truetype");
+  }
+
+h1{
+    color: black;
+    font-family: "Gratise";
+    font-size: 50;
+}
+body{
+    background-color: #edf6f9;
+}
+input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+.container{
+    width:70%;
+    margin: 20px auto;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 2px 2px 20px 0px grey;
+}
+.item-row{
+    /* background-color: #5A407C; */
+    background-color: #faedcb;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3px;
+    /* color: white; */
+    color: black;
+    font-size: 16px;
+    /* box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75); */
+}
+.save{
+    background-color:  #ffc49b;
+    color: black;
+}
+a {
+color: #17a2b8;
+text-decoration: none;
+}
+a:hover{
+    color:purple;
+}
+.timer{
+background-color: #e48c74;
+/* box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75); */
+border-radius: 5px;
+padding: 5px;
+}
+.edit{
+    background-color: white;
+    color: black;
+
+}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<title>Notehub Tasks</title>
+<!-- Citation for task-list code
+https://arbcoms.com/wp-content/endurance-page-cache/_index.html -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<p></p>
+<style>
+    
+</style>
+<div class = "container">
+    <p>
+        <a class= "btn btn-sm save" href ="{%url 'task_list' %}">Back to List</a>
+    </p>
+    <b>Update Task</b><p>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-sm save" type="submit" value="Update" name="Update">
+    </form>
+    <p></p>
+    <p></p>
+    <b></b>
+
+</div>
+{% endblock %}

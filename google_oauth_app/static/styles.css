@@ -1,0 +1,63 @@
+@font-face {
+    font-family: "Gratise";
+    src: url("fonts/Gratise.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Terminal";
+    src: url("fonts/terminal-dosis.light.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Winkle";
+    src: url("fonts/Winkle-Regular.ttf") format("truetype");
+  }
+body {
+    background-color: white;
+    background-image: url("images/loginBackground1.jpeg");
+    background-size: cover;
+    background-position: 0%;    
+    /* background-repeat: no-repeat; */
+
+  }
+  .logout{
+    color:purple;
+  }
+  a{
+    color:purple;
+  }
+  .welcome{
+    color: black;
+    font-family: "Gratise";
+    font-size: 50;
+  }
+
+/* .nav {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: arial, sans-serif;
+  background-color: #404040;
+  position: fixed;
+  top: 0;
+  width: 100%;
+} */
+
+  h1 {
+    color: black;
+    text-align: center;
+    font-family: "Winkle";
+    font-size: 30;
+  }
+  h2 {
+    color: black;
+    text-align: center;
+    font-family: "Gratise";
+    font-size: 70;
+  }
+  p {
+    color: black;
+    text-align: center;
+    font-family: "Terminal";
+    font-size: 24;
+  }

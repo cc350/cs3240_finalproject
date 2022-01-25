@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load socialaccount %}
+
+{% block content %}
+<title>Notehub Profile</title>
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<style>
+	
+	input{
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 15px;
+    box-sizing: border-box;
+    
+	}
+	.container{
+		width:50%;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+    border-radius: 3px;
+    text-align: center;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+	.item-row{
+        /* background-color: #5A407C; */
+        background-color: #faedcb;
+		margin: 10px;
+		padding: 20px;
+    border-radius: 3px;
+    align-items: center;
+        /* color: white; */
+        color: black;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+	.save{
+		background-color:  #ffc49b;
+        color: black;
+        align-items: center;
+    }
+    .save2{
+		background-color:  #faedcb;
+        color: black;
+    }
+    a {
+    color: #17a2b8;
+  }
+    .timer{
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+.username{
+  font-size: 20;
+}
+</style>
+<div class="container">
+<h1>My Profile</h1>
+<div class="content-section">
+    <div class="media">
+      <!-- <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"> -->
+      <div class="media-body">
+        <p class="text-secondary username">Username: {{ user.username }}</p>
+        <p class="text-secondary">First Name: {{ user.first_name }}</p>
+        <p class="text-secondary">Last Name: {{ user.last_name }}</p>
+        <p class="text-secondary">Email: {{ user.email }}</p>
+      </div>
+    </div>
+    <p>
+      <a href="{% url 'edit_profile' %}" class = "btn save">Edit Profile</a>
+      
+    </p>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+  
+{% endblock %}

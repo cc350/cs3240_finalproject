@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>Notehub Courses</title>
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<style>
+    .container{
+        width:20%;
+        align-items: flex-start;
+    }
+	.save{
+    background-color:  #ffc49b;
+    color: black;
+    width:100%
+}
+</style>
+<div class="container">
+
+	<b>Really leave "<span style="color: red;">{{courseItem}}</span>"?<br>
+
+	<a class="btn btn-sm save" href="{% url 'my_courses' %}" >No</a>
+	<p></p>
+	<form method="POST" action="">
+		{% csrf_token %}
+		<input class="btn btn-sm btn-danger" type="submit" value="Yes, Leave" name="Yes">
+	</form>
+</div>
+{% endblock %}

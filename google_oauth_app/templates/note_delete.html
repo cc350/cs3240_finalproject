@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<title>Notehub Notes</title>
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<style>
+    .container{
+        width:20%;
+        align-items: flex-start;
+    }
+	.save{
+    background-color:  #ffc49b;
+    color: black;
+    width:100%
+}
+</style>
+<div class="container">
+
+    <b>Deleting "<span style="color: red;">{{note.title}}</span>" is permanent... do you want to proceed?<br>
+    <p> You can only delete notes that were added by you!</p>
+
+    <a class="btn btn-sm save" type="submit" href="{% url 'note_list' %}" >No</a>
+    <p></p>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input class="btn btn-sm btn-danger" type="submit" value="Yes, Delete" name="Yes">
+    </form>
+</div>
+{% endblock %}

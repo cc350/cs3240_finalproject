@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Gratise";
+    src: url("fonts/Gratise.ttf") format("truetype");
+  }
+
+.navbar-brand{
+    color: black;
+    font-family: "Gratise";
+    font-size: 30;
+}
+.navbar{
+    /* background:#59419C; */
+    /* background: #5A407C; */
+    background: #AED9E0;
+    padding-left: 2%;
+  }
+.nav-item{
+    text-decoration-color: white;
+    
+}
+
+.nav-link{
+    color: whitesmoke;
+    
+}
+
+
+.task-list{
+    color: black;
+}
+    
+
+

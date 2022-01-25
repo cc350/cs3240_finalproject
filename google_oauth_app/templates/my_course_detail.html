@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<title>Notehub Courses</title>
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<style>
+	.save2{
+		background-color:  #faedcb;
+        color: black;
+    }
+    a {
+    color: #17a2b8;
+  }
+  .note_title{
+    font-weight: bold;
+}
+</style>
+<div class="container">
+	<h1>{{ course.name }}</h1>
+	<h2>Tasks:</h2>
+	{% for task in tasks %}
+		<div class = "item-row">
+			{% if task.complete == True %}
+				<del>{{ task }}, {{ task.due }}</del>
+			{% else %}
+				<span>{{ task }} ({{ task.course }})</span>
+				<span style="float: right;" class="timer"><b>Due:</b> {{ task.due|timeuntil }}</span>
+			{% endif %}
+			<a class ="btn btn-sm btn-light" href="{% url 'task_update' task.pk %}">Edit</a>
+			<a href = "{% url 'task_delete' task.pk %}">Delete</a>
+		</div>
+	{%endfor%}
+	
+	<h2>Notes:</h2>
+	<table class="table mb-0">
+		<thread>
+			<tr>
+				<th class="note_title">Title</th>
+				<th>Author</th>
+				<th>Course</th>
+				<th>Download</th>
+			</tr>
+		</thread>
+		<tbody>
+			{% for note in course.note_set.all %}
+				<tr>
+					<td>{{ note.title }}</td>
+					<td>{{ note.author }}</td>
+					<td>{{note.course}}</td>
+					<td>
+						<a href="{{ note.pdf.url }}" class="btn save2" style ="border: 0.5px solid #AEAEAE;"  target="_blank"> Open PDF
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h3>Student List:</h3>
+    <ul>
+        {% for student in course.students.all %}
+        <li>{{ student.last_name}}, {{ student.first_name }} | {{student.email}}</li>
+        {% endfor %}
+    </ul> 
+</div>
+{% endblock %}

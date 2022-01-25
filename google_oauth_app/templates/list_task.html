@@ -1,0 +1,114 @@
+{% extends 'Base.html' %}
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+{% block content %}
+<title>Notehub Tasks</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.min.css" integrity="sha256-/8xGgcV6Mp9fFa2u2lLYOWYNluCdrHEvBfiwhpkD/Js=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/south-street/theme.min.css" integrity="sha256-j5WK5GB3+w3i2jRf0bV9dkjJ+mm+TiSEG6WgNiD+gWk=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.structure.min.css" integrity="sha256-rxais37anKUnpL5QzSYte+JnIsmkGmLG+ZhKSkZkwVM=" crossorigin="anonymous" />
+
+<script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous">
+  </script>
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous">
+</script>
+
+<style>
+	
+	input{
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 15px;
+		box-sizing: border-box;
+	}
+	.container{
+		width:60%;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+	.item-row{
+		background-color: #5A407C;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: white;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+	.save{
+		background-color:  rgb(147, 207, 223);
+		color: white;
+    }
+    .timer{
+	background-color: #dc3545;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+</style>
+
+<div class="container">
+    <form method = "POST" action="/Assignments/">
+        {% csrf_token %}
+        {{form}}
+        <input class = "btn save" type="submit" name="save" autocomplete="off" >
+    </form>
+    <div class="task-list">
+        <table class="table mb-0">
+            <thread>
+                <tr>
+                    <th>Title</th>
+                    <th>Due</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for task in tasks %}
+                <div class = "item-row">
+                    {% if task.complete == True %}
+                        <del>{{task}}, {{task.due}}</del>
+                    {% else %}
+                        <span>{{task}} (<a href="{% url 'Course' task.course %}">{{task.course}}</a>)</span>
+                        <span style="float: right;" class="timer"><b>Due:</b> {{ task.due|timeuntil }}</span>
+                    {% endif %}
+                    <a class ="btn btn-sm btn-light" href="{% url 'update_task' task.id %}">Edit</a>
+                    <a href = "{% url 'delete_task' task.id %}">Delete</a>
+                    
+                </div>
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.due }}</td>
+                </tr>
+                    
+                {% endfor %}
+             </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="due"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        dateFormat: 'yy-mm-dd',
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+{% endblock %}
+

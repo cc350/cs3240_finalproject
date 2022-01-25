@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+<title>Notehub Notes</title>
+<style>
+	
+	input{
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 15px;
+		box-sizing: border-box;
+	}
+	.container{
+		width:80%;
+        margin: 20px auto;
+        padding:20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 2px 2px 20px 0px grey;
+	}
+	.item-row{
+        /* background-color: #5A407C; */
+        background-color: #faedcb;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+        /* color: white; */
+        color: black;
+		font-size: 16px;
+        /* box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75); */
+        
+	}
+	.save{
+		background-color:  #ffc49b;
+        color: black;
+    }
+    .save2{
+		background-color:  #faedcb;
+        color: black;
+    }
+    a {
+    color: #17a2b8;
+  }
+    .timer{
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+.note_title{
+    font-weight: bold;
+}
+</style>
+<div class="container">
+    <h1>All Notes</h1>
+    <br>
+    <p>
+        <a href="{% url 'note_create' %}" class = "btn save">Upload Note</a>
+    </p>
+
+    <table class="table mb-0">
+        <thread>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Course</th>
+                <th>Download</th>
+                <th>Delete?</th>
+            </tr>
+        </thread>
+        <tbody>
+            {% for note in Notes %}
+                {% if note.course in user.courses.all%}
+                    <tr>
+                        <td class="note_title">{{ note.title }}</td>
+                        <td>{{ note.author }}</td>
+                        <td><a href="{% url 'my_course_detail' note.course %}">{{note.course}}</a></td>
+                        <td>
+                            <a href="{{ note.pdf.url }}" class="btn save2" style ="border: 0.5px solid #AEAEAE;" target="_blank"> Open PDF
+                            </a>
+                        </td>
+                        <td><a href = "{% url 'note_delete' note.id %}">Delete</a></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    *(This page only displays notes for classes you have joined.)
+
+</div>
+{% endblock %}
+
+

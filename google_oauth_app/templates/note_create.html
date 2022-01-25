@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<title>Notehub Notes</title>
+<div class="container">
+<link rel="stylesheet" type="text/css" href="{% static 'general_pages.css' %}">
+    <h1> Upload Note </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn save"> Upload Note </button>
+    </form>
+</div>
+{% endblock %}
